@@ -76,6 +76,42 @@ public:
     head->next = NULL;
     head = prev;
   }
+  void break_link_list() {
+    class Node *odd_ptr, *even_ptr, *current = head, *l1, *l2;
+    while (current != NULL) {
+      if ((current->value) % 2 == 0) {
+        if (l1 == NULL)
+          l1 = even_ptr = current;
+        else {
+          even_ptr->next = current;
+          even_ptr = current;
+        }
+
+      } else {
+        if (l2 == NULL)
+          l2 = odd_ptr = current;
+        else {
+          odd_ptr->next = current;
+          odd_ptr = current;
+        }
+      }
+      current = current->next;
+    }
+    odd_ptr->next = NULL;
+    even_ptr->next = NULL;
+    cout << endl << "odd link list" << endl;
+    while (l1 != NULL) {
+      cout << "   " << l1->value;
+      l1 = l1->next;
+    }
+
+    cout << endl << "even link list" << endl;
+    while (l2 != NULL) {
+      cout << "   " << l2->value;
+      l2 = l2->next;
+    }
+    cout << endl;
+  }
 };
 int main() {
   cout << " Link List Program ";
@@ -90,5 +126,6 @@ int main() {
   l1.printList();
   l1.reverse();
   l1.printList();
+  l1.break_link_list();
   return 0;
 }
