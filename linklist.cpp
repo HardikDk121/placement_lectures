@@ -46,7 +46,7 @@ public:
     delete (ptr);
     preptr->next = NULL;
   }
-  void PrintList() {
+  void printList() {
 
     class Node *ptr = head;
     cout << endl << " Link List Elements are : " << endl;
@@ -59,6 +59,23 @@ public:
       ptr = ptr->next;
     }
   }
+  void reverse() {
+    class Node *prev, *current, *next_node;
+
+    prev = current = head;
+
+    if (current->next == NULL) {
+      return;
+    }
+    while (current) {
+      next_node = current->next;
+      current->next = prev;
+      prev = current;
+      current = next_node;
+    }
+    head->next = NULL;
+    head = prev;
+  }
 };
 int main() {
   cout << " Link List Program ";
@@ -70,6 +87,8 @@ int main() {
   l1.insert(25);
   l1.insert(30);
   l1.delnode();
-  l1.PrintList();
+  l1.printList();
+  l1.reverse();
+  l1.printList();
   return 0;
 }
